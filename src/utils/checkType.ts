@@ -1,5 +1,4 @@
 import { ZodType } from "zod"
-import { zodToJsonSchema } from "zod-to-json-schema"
 
 export default <T>(data: T, type: ZodType<T>): T => {
 	const result = type.safeParse(data)
@@ -10,7 +9,7 @@ export default <T>(data: T, type: ZodType<T>): T => {
 			JSON.stringify(
 				{
 					data,
-					schema: zodToJsonSchema(type, "schema"),
+					schema: type,
 					error: result.error,
 				},
 				null,
